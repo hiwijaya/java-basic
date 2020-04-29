@@ -2,6 +2,11 @@ package com.hiwijaya.javabasic;
 
 public class Methods extends OverridingMethod {
 
+    // Constructor
+    Methods(){
+        System.out.println("This is Methods Constructor.");
+    }
+
     // Method with return value (also static method).
     public static double getPi(){
         return 3.14;
