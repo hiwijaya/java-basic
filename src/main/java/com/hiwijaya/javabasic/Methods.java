@@ -3,8 +3,13 @@ package com.hiwijaya.javabasic;
 public class Methods extends OverridingMethod {
 
     // Constructor
-    Methods(){
+    public Methods(){
+        this(0);    // calling other constructor
         System.out.println("This is Methods Constructor.");
+    }
+
+    public Methods(int id){
+        System.out.println("My ID:" + id);
     }
 
     // Method with return value (also static method).
@@ -22,7 +27,7 @@ public class Methods extends OverridingMethod {
     // Void method
     public void calculateCircle(double radius){
         double area = Methods.getPi() * Math.pow(radius, 2);   // a = pi * r^2
-        System.out.println("Area = " + String.valueOf(area));   // valueOf() -> convert to String
+        System.out.println("Area = " + area);
     }
 
     // Overloading Method. Methods with identical name but different variables.
@@ -35,6 +40,7 @@ public class Methods extends OverridingMethod {
     }
 
     public static void main(String[] args) {
+
         Methods m = new Methods();
         m.calculateCircle(4);
         m.setAddress("JL Purimas I", "Jakarta Timur");
