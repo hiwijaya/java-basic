@@ -4,12 +4,15 @@ public class Inheritance {
 
     public static void main(String[] args) {
 
-        Tesla teslaModel3 = new Tesla();
-        teslaModel3.setTransmission("automatic");
-        teslaModel3.setFuel("electricity");
-        teslaModel3.drive();
-        teslaModel3.honk();
-        teslaModel3.setSelfDriving(true);
+        Car car = new Tesla();          // Polymorphism
+        car.setTransmission("automatic");
+        car.setFuel("electricity");
+        car.drive();
+        car.honk();
+
+        Tesla modelX = (Tesla) car;     // Casting
+        System.out.println("fuel: " + modelX.getFuel());
+        modelX.setSelfDriving(true);
     }
 
 }
