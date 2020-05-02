@@ -55,7 +55,7 @@ public class Collections {
 
         // create an ArrayList object
         // <...> is Generics
-        ArrayList<Player> players = new ArrayList<Player>();
+        ArrayList<Player> players = new ArrayList<>();
 
         // add new item
         players.add(player1);
@@ -112,14 +112,48 @@ public class Collections {
         Player player2 = new Player(3, "Anthony Davis");
         Player playerA = new Player(23, "LeBron James");
 
-        Set<Player> players = new HashSet<Player>();
+        Set<Player> players = new HashSet<>();
         players.add(player1);
         players.add(player2);
-        players.add(playerA);
+        players.add(playerA);   // detect as duplicate. Value will be ignored
 
-        for(Player p : players){
-            System.out.println(p + " " + p.hashCode());
+        // Default Set in Java doesn't provide "get" function
+
+        Iterator<Player> i = players.iterator();
+        while (i.hasNext()){
+            Player p = i.next();
+            System.out.println("Hash: " + p.hashCode() + " - " + p.getName());
         }
+    }
+
+    // Map is collection with key-value pair
+    public void map(){
+        Player player1 = new Player(23, "LeBron James");
+        Player player2 = new Player(3, "Anthony Davis");
+        Player player3 = new Player(9, "Rajon Rondo");
+
+        // create Map object with String as key, Player as value defined in Generic
+        Map<String, Player> players = new HashMap<>();
+        players.put("PG", player3);
+        players.put("SF", player1);
+        players.put("PF", player2);
+
+        // get value by key
+        Player sf = players.get("SF");
+        System.out.println(sf);
+
+        // get all keys
+        Set<String> keys = players.keySet();
+        System.out.println(keys);
+
+        // iterating all values
+        Iterator<String> i =keys.iterator();
+        while (i.hasNext()){
+            String key = i.next();
+            Player p = players.get(key);
+            System.out.println(p);
+        }
+
     }
 
 
@@ -128,7 +162,8 @@ public class Collections {
 //        c.array();
 //        c.arrayList();
 //        c.linkedList();
-        c.set();
+//        c.set();
+        c.map();
 
     }
 
