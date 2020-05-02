@@ -1,9 +1,6 @@
 package com.hiwijaya.javabasic;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
+import java.util.*;
 
 
 public class Collections {
@@ -95,7 +92,7 @@ public class Collections {
         Player player4 = new Player(4, "Alex Caruso");
         Player player5 = new Player(14, "Danny Green");
 
-        LinkedList<Player> players = new LinkedList<Player>();
+        LinkedList<Player> players = new LinkedList<>();
         players.add(player1);
         players.add(player2);
 
@@ -108,12 +105,30 @@ public class Collections {
 
     }
 
+    // set is a UNORDERED UNIQUE collection.
+    // to implement unique, you must override equals() and hashcode()
+    public void set(){
+        Player player1 = new Player(23, "LeBron James");
+        Player player2 = new Player(3, "Anthony Davis");
+        Player playerA = new Player(23, "LeBron James");
+
+        Set<Player> players = new HashSet<Player>();
+        players.add(player1);
+        players.add(player2);
+        players.add(playerA);
+
+        for(Player p : players){
+            System.out.println(p + " " + p.hashCode());
+        }
+    }
+
 
     public static void main(String[] args) {
         Collections c = new Collections();
 //        c.array();
 //        c.arrayList();
-        c.linkedList();
+//        c.linkedList();
+        c.set();
 
     }
 
@@ -149,4 +164,21 @@ class Player {
     public String toString() {
         return name;
     }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if(o == null) return false;
+        if (this == o) return true;
+        if (!(o instanceof Player)) return false;
+
+        Player player = (Player) o;
+        return number == player.number;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(number);
+    }
+
 }
