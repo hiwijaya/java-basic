@@ -105,27 +105,6 @@ public class Collections {
 
     }
 
-    // set is a UNORDERED UNIQUE collection.
-    // to implement unique, you must override equals() and hashcode()
-    public void set(){
-        Player player1 = new Player(23, "LeBron James");
-        Player player2 = new Player(3, "Anthony Davis");
-        Player playerA = new Player(23, "LeBron James");
-
-        Set<Player> players = new HashSet<>();
-        players.add(player1);
-        players.add(player2);
-        players.add(playerA);   // detect as duplicate. Value will be ignored
-
-        // Default Set in Java doesn't provide "get" function
-
-        Iterator<Player> i = players.iterator();
-        while (i.hasNext()){
-            Player p = i.next();
-            System.out.println("Hash: " + p.hashCode() + " - " + p.getName());
-        }
-    }
-
     // Map is collection with key-value pair
     public void map(){
         Player player1 = new Player(23, "LeBron James");
@@ -153,6 +132,47 @@ public class Collections {
             Player p = players.get(key);
             System.out.println(p);
         }
+    }
+
+    // set is a UNIQUE collection.
+    // to implement unique, you must override equals() and hashcode()
+    public void set(){
+        Player player1 = new Player(23, "LeBron James");
+        Player player2 = new Player(3, "Anthony Davis");
+        Player playerA = new Player(23, "LeBron James");
+
+        // HashSet is UNORDERED | use TreeMap/TreeSet if you want ORDERED list
+        Set<Player> players = new HashSet<>();
+        players.add(player1);
+        players.add(player2);
+        players.add(playerA);   // detect as duplicate. Value will be ignored
+
+        // Default Set in Java doesn't provide "get" function
+
+        Iterator<Player> i = players.iterator();
+        while (i.hasNext()){
+            Player p = i.next();
+            System.out.println("Hash: " + p.hashCode() + " - " + p.getName());
+        }
+    }
+
+    public void sorting(){
+        Player player1 = new Player(23, "LeBron James");
+        Player player2 = new Player(3, "Anthony Davis");
+        Player player3 = new Player(9, "Rajon Rondo");
+        Player player4 = new Player(4, "Alex Caruso");
+        Player player5 = new Player(14, "Danny Green");
+
+
+        Set<Player> players = new TreeSet<>();
+//        Set<Player> players = new TreeSet<>(new PlayerComparator());    // using custom Comparator class
+        players.add(player1);
+        players.add(player2);
+        players.add(player3);
+        players.add(player4);
+        players.add(player5);
+
+        System.out.println(players.toString());
 
     }
 
@@ -162,14 +182,15 @@ public class Collections {
 //        c.array();
 //        c.arrayList();
 //        c.linkedList();
+//        c.map();
 //        c.set();
-        c.map();
+        c.sorting();
 
     }
 
 }
 
-class Player {
+class Player implements Comparable<Player> {
 
     public Player(int number, String name){
         this.number = number;
@@ -214,6 +235,20 @@ class Player {
     @Override
     public int hashCode() {
         return Objects.hash(number);
+    }
+
+    @Override
+    public int compareTo(Player other) {
+        return this.name.compareTo(other.name);  // sorted asc
+    }
+
+}
+
+class PlayerComparator implements Comparator<Player>{
+
+    @Override
+    public int compare(Player player1, Player player2) {
+        return player2.getNumber() - player1.getNumber();   // sorted by number desc
     }
 
 }
