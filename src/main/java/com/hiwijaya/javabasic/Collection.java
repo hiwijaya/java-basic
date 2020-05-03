@@ -3,7 +3,7 @@ package com.hiwijaya.javabasic;
 import java.util.*;
 
 
-public class Collections {
+public class Collection {
 
     public void array(){
         // init an array within the values. | String[] teams = new String[5];
@@ -61,20 +61,24 @@ public class Collections {
         players.add(player1);
         players.add(player2);
         players.add(player3);
-        players.add(2, player4);
+        players.add(1, player4);
+        players.add(player5);
 
         // get item with index
         Player mvp = players.get(1);
         System.out.println(mvp.getName());
 
         // remove item
-        players.remove(2);
-        players.remove(player3);
+//        players.remove(2);
+//        players.remove(player3);
         System.out.println(Arrays.toString(players.toArray()));
 
         // get length/size
         int size = players.size();
         System.out.println(size);
+
+        // sorting wth implement comparable
+        Collections.sort(players);
 
         // iterating with for-loop
         for(Player p : players){
@@ -178,7 +182,7 @@ public class Collections {
 
 
     public static void main(String[] args) {
-        Collections c = new Collections();
+        Collection c = new Collection();
 //        c.array();
 //        c.arrayList();
 //        c.linkedList();
