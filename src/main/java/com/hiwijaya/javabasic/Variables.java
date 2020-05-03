@@ -34,21 +34,26 @@ public class Variables {
         values[0] = "Changed the first value";
     }
 
+    public void varargs(String... names){
+        for(String name : names){
+            System.out.println(name);
+        }
+    }
+
     public static void main(String[] args) {
 
         // Local Variable -> lives only within the method that declared the variable.
-        int width = 20;
+        String name = "Happy";
 
         Variables v1;
         v1 = new Variables();
-        v1.setName("Happy");
+        v1.setName(name);
         System.out.println(v1.getName());
 
         // Reference Variable
         Variables v2 = v1;
         v2.setName("Liam");
         System.out.println(v2.getName());
-
         System.out.println(v1.getName());
 
         Variables v = new Variables();
@@ -61,6 +66,8 @@ public class Variables {
         System.out.println(Arrays.toString(values));
         v.passByReference(values);
         System.out.println(Arrays.toString(values));
+
+        v.varargs("LeBron James", "Kobe Bryant", "Dwight Howard", "Carmelo Anthony");
 
     }
 }
