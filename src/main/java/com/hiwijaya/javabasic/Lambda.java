@@ -1,5 +1,9 @@
 package com.hiwijaya.javabasic;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.function.*;
 
 public class Lambda {
@@ -120,7 +124,46 @@ public class Lambda {
     }
 
     public void lambdaInCollection(){
-        // TODO: to be continued
+
+        List<String> list = Arrays.asList("Happy", "Indra", "Wijaya");
+
+//        for(String value : list){               // <-- for-loop
+//            System.out.println(value);
+//        }
+
+//        list.forEach(new Consumer<String>() {   // <-- forEach, new Java 8 features
+//            @Override
+//            public void accept(String s) {
+//                System.out.println(s);
+//            }
+//        });
+
+//        list.forEach((value) -> System.out.println(value));     // <-- Lambda
+
+        list.forEach(System.out::println);      // <-- method reference
+
+
+
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("a", "Happy");
+        map.put("b", "Indra");
+        map.put("c", "Wijaya");
+
+//        for(Map.Entry<String, String> entry : map.entrySet()){
+//            System.out.println(entry.getKey() + " - " + entry.getValue());
+//        }
+
+//        map.forEach(new BiConsumer<String, String>() {
+//            @Override
+//            public void accept(String key, String value) {
+//                System.out.println(key + " - " + value);
+//            }
+//        });
+
+//        map.forEach((key, value) -> System.out.println(key + " - " + value));
+
+        map.forEach(Lambda::printEntry);
+
     }
 
 
@@ -133,17 +176,21 @@ public class Lambda {
         return a.equals(b);
     }
 
+    public static void printEntry(String key, String value){
+        System.out.println(key + " - " + value);
+    }
+
     public void printLambda(Supplier<String> supplier){
         System.out.println(supplier.get());
     }
 
 
 
-
     public static void main(String[] args) {
         Lambda lambda = new Lambda();
 //        lambda.functionalInterfaces();
-        lambda.functionalInterfaceToLambda();
+//        lambda.functionalInterfaceToLambda();
+        lambda.lambdaInCollection();
     }
 
 }
