@@ -136,6 +136,12 @@ public class Collection {
             Player p = players.get(key);
             System.out.println(p);
         }
+
+        // iterating with for-loop
+        for(Map.Entry<String, Player> entry : players.entrySet()){
+            System.out.println(entry.getKey() + " - " + entry.getValue());
+        }
+
     }
 
     // set is a UNIQUE collection.
@@ -186,9 +192,9 @@ public class Collection {
 //        c.array();
 //        c.arrayList();
 //        c.linkedList();
-//        c.map();
+        c.map();
 //        c.set();
-        c.sorting();
+//        c.sorting();
 
     }
 
