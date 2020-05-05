@@ -24,7 +24,7 @@ public class LazyParameter {
 //    }
 
     // with this form, the method will only executed after get() is called
-    public static Product findOrCreate(String id, Supplier<Product> newProduct){
+    public static Product findOrCreate(int id, Supplier<Product> newProduct){
         Product product = productService.findById(id);
         if(product != null){
             return product;
@@ -36,13 +36,13 @@ public class LazyParameter {
 
     public static void main(String[] args) {
 
-        Product product1 = findOrCreate("1", () -> productService.createNewProduct("1"));
+        Product product1 = findOrCreate(1, () -> productService.createNewProduct(1));
         System.out.println(product1);
 
-        Product product2 = findOrCreate("2", () -> productService.createNewProduct("2"));
+        Product product2 = findOrCreate(2, () -> productService.createNewProduct(2));
         System.out.println(product2);
 
-        Product product1Existed = findOrCreate("1", () -> productService.createNewProduct("1"));
+        Product product1Existed = findOrCreate(1, () -> productService.createNewProduct(1));
         System.out.println(product1Existed);
 
     }
@@ -51,13 +51,13 @@ public class LazyParameter {
 
 class ProductService {
 
-    private Map<String, Product> database = new HashMap<>();
+    private Map<Integer, Product> database = new HashMap<>();
 
-    public Product findById(String id){
+    public Product findById(int id){
         return database.get(id);
     }
 
-    public Product createNewProduct(String id){
+    public Product createNewProduct(int id){
         System.out.println("Creating new product");
         Product product = new Product(id, null);
         database.put(id, product);
@@ -67,14 +67,6 @@ class ProductService {
 }
 
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-class Product {
 
-    private String id;
-    private String name;
-
-}
 
 
