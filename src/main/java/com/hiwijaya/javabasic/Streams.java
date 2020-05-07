@@ -8,7 +8,6 @@ import java.util.stream.Stream;
 
 public class Streams {
 
-
     public List<Product> initList() {
         List<Product> list = new ArrayList<>();
         list.add(new Product(5, "Sandals"));
@@ -109,6 +108,13 @@ public class Streams {
                 .forEach(System.out::println);
 
         // flatMap()
+        // operation has the effect of applying a one-to-many transformation
+        // to the elements of the stream, and then flattening the resulting elements into a new stream.
+        String[][] data = new String[][]{{"a", "b"}, {"c", "d", "e"}, {"f", "g"}, {"h"}};
+        Stream<String[]> streamArr = Arrays.stream(data);
+        String[] flatten = streamArr.flatMap(arr -> Arrays.stream(arr))
+                .toArray(String[]::new);
+        System.out.println(Arrays.toString(flatten));
 
     }
 
@@ -157,14 +163,31 @@ public class Streams {
         first.ifPresent(System.out::println);
 
         // min()
+        stream = initList().stream();
+        Optional<Product> min = stream.min((val1, val2) -> val1.getId() - val2.getId());
+        System.out.print("min ");
+        min.ifPresent(System.out::println);
 
         // max()
+        stream = initList().stream();
+        Optional<Product> max = stream.max(Comparator.comparingInt(Product::getId));
+        System.out.print("max ");
+        max.ifPresent(System.out::println);
 
-        // reduce()
+        // reduce() a terminal operation that can reduce all elements in the stream to a single element.
+        stream = initList().stream();
+        String reduced = stream.map(p -> p.getName() + ", ")
+                .reduce("products: ", (subtotal, element) -> subtotal + element);
+        System.out.println(reduced);
 
         // forEach()
+        stream = initList().stream();
+        stream.forEach(p -> System.out.println(p.getName()));
 
         // toArray()
+        stream = initList().stream();
+        Product[] productArr = stream.sorted().toArray(Product[]::new);
+        System.out.println(Arrays.toString(productArr));
 
     }
 
