@@ -136,6 +136,30 @@ public class Optionals {
 
     }
 
+    public void nestedIfFilter() {
+        Product product = new Product(1, "Spoon");
+        product.setManufacture(new Manufacture("Indonesia"));
+
+//        Long cost = 0L;
+//        if(product.getManufacture().getCountry().equals("Indonesia")){
+//            cost = 10000L;
+//        }
+//        else if(product.getManufacture().getCountry().equals("China")){
+//            cost= 8000L;
+//        }
+//        else {
+//            cost = 200000L;
+//        }
+
+        Long cost = Optional.of(product).filter(p -> p.getManufacture().getCountry().equals("Indonesia"))
+                .map(p -> 10000L).orElseGet(() -> Optional.of(product)
+                        .filter(p -> p.getManufacture().getCountry().equals("China"))
+                        .map(p -> 8000L)
+                        .orElse(20000L));
+
+        System.out.println(cost);
+    }
+
 
     public static void main(String[] args) {
         Optionals o = new Optionals();
@@ -146,7 +170,8 @@ public class Optionals {
 //        o.nestedIfChecking();
 //        o.checkAndThrowException();
 //        o.ifCheckDoSomething();
-        o.ifFilter();
+//        o.ifFilter();
+        o.nestedIfFilter();
 
     }
 
