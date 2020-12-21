@@ -2,7 +2,12 @@ package com.hiwijaya.javabasic;
 
 import java.util.*;
 
-
+/**
+ * @author Happy Indra Wijaya
+ *
+ * More detail about collection: https://github.com/hiwijaya/java-collection.git
+ *
+ */
 public class Collection {
 
     public void array(){
