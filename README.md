@@ -14,3 +14,6 @@ Contains example codes of Java fundamental commons usage:
 - [**Lambda**](https://github.com/hiwijaya/java-basic/blob/master/src/main/java/com/hiwijaya/javabasic/Lambda.java)
 - [**Stream API**](https://github.com/hiwijaya/java-basic/blob/master/src/main/java/com/hiwijaya/javabasic/Streams.java)
 - [**Optional**](https://github.com/hiwijaya/java-basic/blob/master/src/main/java/com/hiwijaya/javabasic/Optionals.java)
+
+Deep dive into Java Collection API
+- [Collections](https://github.com/hiwijaya/java-collection)
