@@ -48,6 +48,9 @@ public class Streams {
         Stream<Integer> streamIterated = Stream.iterate(10, n -> n + 2).limit(5);
         streamIterated.forEach(System.out::println);
 
+        // updated Java 9. iterate() with Predicate
+        Stream<Integer> streamIterated2 = Stream.iterate(10, n -> n <= 20, n -> n + 2);
+        streamIterated2.forEach(System.out::println);
     }
 
     // non-terminal operations
@@ -196,15 +199,42 @@ public class Streams {
         return p;
     }
 
+    /**
+     * {@code takeWhile()}.
+     * Introduced in Java 9. Returns elements from the beginning of an ordered stream as long as
+     * a given condition (predicate) remains true, stopping immediately once the condition
+     * evaluates to false for the first time.
+     */
+    public void takeWhileExample() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 1, 2);
+
+        numbers.stream()
+                .takeWhile(n -> n < 4)
+                .forEach(System.out::println);
+    }
+
+    /**
+     * {@code dropWhile()}.
+     * Introduced in Java 9. Returns elements from the beginning of an ordered stream as long as
+     * a given condition (predicate) remains true, stopping immediately once the condition
+     * evaluates to false for the first time.
+     */
+    public void dropWhileExample() {
+        List<Integer> numbers = List.of(1, 2, 3, 4, 1, 2);
+
+        numbers.stream()
+                .dropWhile(n -> n < 4)
+                .forEach(System.out::println);
+    }
 
 
     public static void main(String[] args) {
         Streams s = new Streams();
-//        s.createStream();
+        s.createStream();
 //        s.intermediateOperations();
-        s.terminalOperations();
-
-
+//        s.terminalOperations();
+//        s.takeWhileExample();
+//        s.dropWhileExample();
     }
 
 }
